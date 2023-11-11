@@ -1,0 +1,186 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/Users/souravsuman/Documents/Projects/zk-cryptomixer-Tornado-Cash/BC/contracts/ASP.sol": {
+      "lastModificationDate": 1699450064146,
+      "contentHash": "a5ee5348113a330863dc5cb74be73db9",
+      "sourceName": "contracts/ASP.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./MiMCSponge.sol"
+      ],
+      "versionPragmas": [
+        "0.8.17"
+      ],
+      "artifacts": [
+        "ASP"
+      ]
+    },
+    "/Users/souravsuman/Documents/Projects/zk-cryptomixer-Tornado-Cash/BC/contracts/MiMCSponge.sol": {
+      "lastModificationDate": 1699327268872,
+      "contentHash": "71c486ea9675c2d7d2d34852118860ff",
+      "sourceName": "contracts/MiMCSponge.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "0.8.17"
+      ],
+      "artifacts": [
+        "Hasher"
+      ]
+    },
+    "/Users/souravsuman/Documents/Projects/zk-cryptomixer-Tornado-Cash/BC/contracts/ReentrancyGuard.sol": {
+      "lastModificationDate": 1699327268872,
+      "contentHash": "f0588ec923d6b3cf8a50dfde2a39bfc7",
+      "sourceName": "contracts/ReentrancyGuard.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ReentrancyGuard"
+      ]
+    },
+    "/Users/souravsuman/Documents/Projects/zk-cryptomixer-Tornado-Cash/BC/contracts/Verifier.sol": {
+      "lastModificationDate": 1699607882299,
+      "contentHash": "1a3ea8181e76ab5403f643f69051d2a7",
+      "sourceName": "contracts/Verifier.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.7.0 <0.9.0"
+      ],
+      "artifacts": [
+        "Groth16Verifier"
+      ]
+    },
+    "/Users/souravsuman/Documents/Projects/zk-cryptomixer-Tornado-Cash/BC/contracts/Tornado.sol": {
+      "lastModificationDate": 1699611343473,
+      "contentHash": "fc9cf841f3796c723c74fb070bc03df0",
+      "sourceName": "contracts/Tornado.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./MiMCSponge.sol",
+        "./ReentrancyGuard.sol"
+      ],
+      "versionPragmas": [
+        "0.8.17"
+      ],
+      "artifacts": [
+        "IVerifier",
+        "Tornado"
+      ]
+    }
+  }
+}
