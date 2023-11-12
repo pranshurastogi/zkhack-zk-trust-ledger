@@ -1,6 +1,16 @@
 ## zk-trust-ledgerwith Regulatory Compliance
 
 zk-trust-ledger, a tool designed to enhance privacy for cryptocurrency transactions. By using Zero-Knowledge Proofs (zk-SNARKs) along with technologies like Circom, Solidity, and Next.js
+<img width="921" alt="Screenshot 2023-11-12 at 11 11 19 AM" src="https://github.com/pranshurastogi/zkhack-zk-trust-ledger/assets/12568291/3681207a-2094-4142-ab4f-f32a2f4a85c1">
+
+<img width="941" alt="Screenshot 2023-11-12 at 11 11 42 AM" src="https://github.com/pranshurastogi/zkhack-zk-trust-ledger/assets/12568291/d8f6a2fc-6419-4ef9-a8d1-d6c0def47816">
+
+<img width="865" alt="Screenshot 2023-11-12 at 11 12 09 AM" src="https://github.com/pranshurastogi/zkhack-zk-trust-ledger/assets/12568291/18f15016-a7dc-4734-bf5d-ed47da8d6577">
+
+<img width="865" alt="Screenshot 2023-11-12 at 11 12 50 AM" src="https://github.com/pranshurastogi/zkhack-zk-trust-ledger/assets/12568291/c8c44361-41e6-4654-9020-767d13d7d1ab">
+
+
+
 
 ## Commands wrt circuit
 ### Other commands with respect to this circuit
