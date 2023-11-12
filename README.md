@@ -1,6 +1,14 @@
 ## zk-trust-ledgerwith Regulatory Compliance
 
 zk-trust-ledger, a tool designed to enhance privacy for cryptocurrency transactions. By using Zero-Knowledge Proofs (zk-SNARKs) along with technologies like Circom, Solidity, and Next.js
+
+## Overview
+**Problem Summary:** Cryptocurrency mixers face a significant challenge: when they inadvertently mix funds from legitimate users with those from bad actors, all participants risk having their addresses banned due to guilt-by-association. This issue undermines the trust and utility of mixers for privacy protection.
+
+**Proposed Solution** Implement an associative set-based proof of exclusion system. This system categorizes addresses based on transaction history, allowing mixers to generate a proof that legitimate funds are not mixed with those from malicious sources. This approach aims to protect innocent users from being unfairly penalized, while maintaining privacy and enhancing regulatory compliance.
+
+**Expected Outcome:** The solution is expected to safeguard innocent users from association with illicit activities in mixers, balancing privacy with regulatory needs.
+
 <img width="921" alt="Screenshot 2023-11-12 at 11 11 19 AM" src="https://github.com/pranshurastogi/zkhack-zk-trust-ledger/assets/12568291/3681207a-2094-4142-ab4f-f32a2f4a85c1">
 
 <img width="941" alt="Screenshot 2023-11-12 at 11 11 42 AM" src="https://github.com/pranshurastogi/zkhack-zk-trust-ledger/assets/12568291/d8f6a2fc-6419-4ef9-a8d1-d6c0def47816">
