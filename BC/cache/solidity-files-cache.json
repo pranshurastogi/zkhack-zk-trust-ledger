@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/souravsuman/Documents/Projects/zk-cryptomixer-Tornado-Cash/BC/contracts/ASP.sol": {
-      "lastModificationDate": 1699450064146,
-      "contentHash": "a5ee5348113a330863dc5cb74be73db9",
+      "lastModificationDate": 1699686709089,
+      "contentHash": "5f68dad8ca0aa42c225b2376c3475716",
       "sourceName": "contracts/ASP.sol",
       "solcConfig": {
         "version": "0.8.17",
@@ -109,8 +109,8 @@
       ]
     },
     "/Users/souravsuman/Documents/Projects/zk-cryptomixer-Tornado-Cash/BC/contracts/Verifier.sol": {
-      "lastModificationDate": 1699607882299,
-      "contentHash": "1a3ea8181e76ab5403f643f69051d2a7",
+      "lastModificationDate": 1699635165636,
+      "contentHash": "2fc8dbe8072b197e8a4f5adb3e1318d9",
       "sourceName": "contracts/Verifier.sol",
       "solcConfig": {
         "version": "0.8.17",
@@ -144,8 +144,8 @@
       ]
     },
     "/Users/souravsuman/Documents/Projects/zk-cryptomixer-Tornado-Cash/BC/contracts/Tornado.sol": {
-      "lastModificationDate": 1699611343473,
-      "contentHash": "fc9cf841f3796c723c74fb070bc03df0",
+      "lastModificationDate": 1699686727007,
+      "contentHash": "516be738498a0fb92140ce555b1ca8b4",
       "sourceName": "contracts/Tornado.sol",
       "solcConfig": {
         "version": "0.8.17",
@@ -178,6 +178,7 @@
         "0.8.17"
       ],
       "artifacts": [
+        "IASP",
         "IVerifier",
         "Tornado"
       ]

@@ -10,8 +10,10 @@ const aspJSON = require("../json/Asp.json");
 const aspABI = aspJSON.abi;
 const aspInterface = new ethers.utils.Interface(aspABI)
 
-const tornadoAddress = "0xCc81865F9C21ff864f3f45064eD16baEC83ED270";
-const aspAddress = "0xf2D3B9124a412a0A9300c6f720B57C89d1677f40"
+const tornadoAddress = "0x7E0E7E7af70d40fa577c668bd235C0A0441d5b63";
+const aspAddress = "0xaA9CDfdC1081f37BD9508aa9667ec5BCFD3d9550"
+let tempData = null;
+
 
 const Interface = () => {
   const [account, updateAccount] = useState(null);
@@ -81,7 +83,8 @@ const Interface = () => {
         try{
             const proofString = textArea.value;
             const proofElements = JSON.parse(atob(proofString));
-            const b_aspData = JSON.parse(atob(aspData));
+            // const b_aspData = JSON.parse(atob(aspData));
+            const b_aspData = aspData
             console.log(proofElements);
 
     //         receipt = await window.ethereum.request({ method: "eth_getTransactionReceipt", params: [proofElements.txHash] });
@@ -92,18 +95,20 @@ const Interface = () => {
               console.log(1);
             const SnarkJS = window['snarkjs'];
             console.log(2);
+            // console.log(aspData);
+            console.log(tempData);
             const proofInput = {
                 "root": proofElements.root,//utils.BNToDecimal(decodedData.root),
                 "nullifierHash": proofElements.nullifierHash,
                 "recipient": utils.BNToDecimal(account.address),
-                "associationHash":b_aspData.root,
+                "associationHash":tempData.root,
                 "associationRecipient":utils.BNToDecimal(account.address),
                 "secret": utils.BN256ToBin(proofElements.secret).split(""),
                 "nullifier": utils.BN256ToBin(proofElements.nullifier).split(""),
                 "hashPairings": proofElements.hashPairing,//decodedData.hashPairings.map((n) => ($u.BNToDecimal(n))),
                 "hashDirections": proofElements.hashDirections,//decodedData.pairDirection,
-                "associationHashPairings": b_aspData.hashPairing,//decodedData.hashPairings.map((n) => ($u.BNToDecimal(n))),
-                "associationHashDirections": b_aspData.hashDirections//decodedData.pairDirection
+                "associationHashPairings": tempData.hashPairing,//decodedData.hashPairings.map((n) => ($u.BNToDecimal(n))),
+                "associationHashDirections": tempData.hashDirections//decodedData.pairDirection
             };
             console.log(3);
             const { proof, publicSignals } = await SnarkJS.groth16.fullProve(proofInput, "/withdraw.wasm", "/setup_final.zkey");
@@ -115,7 +120,7 @@ const Interface = () => {
                 proof.pi_a.slice(0, 2).map(utils.BN256ToHex),
                 proof.pi_b.slice(0, 2).map((row) => (utils.reverseCoordinate(row.map(utils.BN256ToHex)))),
                 proof.pi_c.slice(0, 2).map(utils.BN256ToHex),
-                publicSignals.slice(0, 2).map(utils.BN256ToHex)
+                publicSignals.slice(0, 3).map(utils.BN256ToHex)
             ];
 
             const callData = tornadoInterface.encodeFunctionData("withdraw", callInputs);
@@ -235,10 +240,14 @@ const Interface = () => {
         hashDirections: decodedData.pairDirection,
       };
 
-      updateAspData(btoa(JSON.stringify(aspElements)));
+      // updateAspData(btoa(JSON.stringify(aspElements)));
+      updateAspData(aspElements);
+      tempData = aspElements
+
 
       console.log('===============!!!!!!!!===============');
       console.log('aspElements',aspElements);
+      // console.log('btoa(JSON.stringify(aspElements))',btoa(JSON.stringify(aspElements)));
       console.log('================!!!!!!!!!!!==============');
 
     } catch (error) {
@@ -256,60 +265,125 @@ const Interface = () => {
 
   return (
     <div>
-      {!!account ? (
+  {!!account ? (
+    <div>
+      <p style={{ marginBottom: "8px", fontSize: "18px", color: "#333" }}>ChainId: {account.chainId}</p>
+      <p style={{ marginBottom: "8px", fontSize: "18px", color: "#333" }}>Address: {account.address}</p>
+      <p style={{ marginBottom: "8px", fontSize: "18px", color: "#333" }}>Balance: {account.balance} ethers</p>
+    </div>
+  ) : (
+    <div>
+      <button
+        style={{
+          padding: "12px 24px",
+          fontSize: "16px",
+          backgroundColor: "#4CAF50",
+          color: "white",
+          border: "none",
+          borderRadius: "4px",
+          cursor: "pointer",
+        }}
+        onClick={connectMetamask}
+      >
+        Connect Metamask
+      </button>
+    </div>
+  )}
+  <div style={{ margin: "16px 0" }}>
+    <hr />
+  </div>
+  {!!account ? (
+    <div>
+      {proofElements ? (
         <div>
-          <p>ChainId: {account.chainId}</p>
-          <p>Address: {account.address}</p>
-          <p>Balance: {account.balance} ethers</p>
-        </div>
-      ) : (
-        <div>
-          {" "}
-          <button onClick={connectMetamask}> Connect Metamask</button>
-        </div>
-      )}
-      <div>
-        <hr />
-      </div>
-      {!!account ? (
-        <div>
-          {proofElements ? (
-            <div>
-                <p><strong>Proof of Deposit</strong></p>
-            <div style={{maxWidth: "100vw", overflowWrap:"break-word"}} >
-            <span style={{ fontSize: 10 }} ref={(proofStringEl) => { updateProofStringEl(proofStringEl); }}>{proofElements}</span>
-            </div>
-            {
-                proofStringEl && (
-                    <button onClick={copyProof}> Copy Proof</button>
-                )
-            }
-            </div>
-          ) : (
-            <button onClick={depositEther}> Deposit 0.1 Ether</button>
+          <p style={{ fontWeight: "bold", fontSize: "18px", color: "#333", marginBottom: "8px" }}>
+            Proof of Deposit
+          </p>
+          <div style={{ maxWidth: "100%", overflowWrap: "break-word", fontSize: "14px", color: "#555" }}>
+            <span ref={(proofStringEl) => { updateProofStringEl(proofStringEl); }}>{proofElements}</span>
+          </div>
+          {proofStringEl && (
+            <button
+              style={{
+                margin: "8px 0",
+                padding: "12px 24px",
+                fontSize: "16px",
+                backgroundColor: "#4CAF50",
+                color: "white",
+                border: "none",
+                borderRadius: "4px",
+                cursor: "pointer",
+              }}
+              onClick={copyProof}
+            >
+              Copy Proof
+            </button>
           )}
         </div>
       ) : (
-        <p>You need to connect to metamask to use this section</p>
+        <button
+          style={{
+            padding: "12px 24px",
+            fontSize: "16px",
+            backgroundColor: "#4CAF50",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
+          onClick={depositEther}
+        >
+          Deposit 0.1 Ether
+        </button>
       )}
-      <div>
-        <hr />
-      </div>
-
-      {
-        account? (
-          <div>
-            <div><textarea className="form-control" style={{ resize: "none" }} ref={(ta) => { updateTextArea(ta); }}></textarea> </div>
-            <button onClick={withdraw}> Withdraw 0.1 Ether</button>
-            </div>
-        ) : (
-          <div>
-            <p>You need to connect to metamask to use this section</p>
-          </div>
-        )
-      }
-
     </div>
+  ) : (
+    <p style={{ fontSize: "16px", color: "#555" }}>You need to connect to Metamask to use this section</p>
+  )}
+  <div style={{ margin: "16px 0" }}>
+    <hr />
+  </div>
+  {account ? (
+    <div>
+      <div>
+        <textarea
+          className="form-control"
+          style={{
+            width: "100%",
+            padding: "12px",
+            resize: "none",
+            boxSizing: "border-box",
+            fontSize: "16px",
+            color: "#333",
+          }}
+          ref={(ta) => {
+            updateTextArea(ta);
+          }}
+        ></textarea>{" "}
+      </div>
+      <button
+        style={{
+          margin: "8px 0",
+          padding: "12px 24px",
+          fontSize: "16px",
+          backgroundColor: "#4CAF50",
+          color: "white",
+          border: "none",
+          borderRadius: "4px",
+          cursor: "pointer",
+        }}
+        onClick={withdraw}
+      >
+        Withdraw 0.1 Ether
+      </button>
+    </div>
+  ) : (
+    <div>
+      <p style={{ fontSize: "16px", color: "#555" }}>You need to connect to Metamask to use this section</p>
+    </div>
+  )}
+</div>
+
   );
 };
 export default Interface;

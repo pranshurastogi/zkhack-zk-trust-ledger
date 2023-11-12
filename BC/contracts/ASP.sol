@@ -9,8 +9,23 @@ contract ASP {
     mapping(uint8 => uint256) lastLevelHash;
     Hasher hasher;
 
+    address public admin;
+    address public crypto_mixer;
+
     constructor(address _hasher) {
         hasher = Hasher(_hasher);
+        admin = msg.sender;
+    }
+
+    function updateMixer(address _crypto_mixer) public {
+        require(msg.sender == admin, "only admin");
+        crypto_mixer = _crypto_mixer;
+    }
+
+    function markedPaid(uint256 _root) public {
+        require(msg.sender == crypto_mixer,"only mixer");
+        require(roots[_root],"Paif or Non-Existant");
+        roots[_root] = false;
     }
 
     uint256[10] levelDefaults = [

@@ -12,21 +12,29 @@ async function main() {
   const Hasher = await ethers.getContractFactory("Hasher");
   const hasher = await Hasher.deploy();
   await hasher.deployed();
-  console.log(hasher.address);
+  console.log('Hasher deployed at',hasher.address);
 
  // deploy verifier
  const Verifier = await ethers.getContractFactory("Groth16Verifier");
  const verifier = await Verifier.deploy();
  await verifier.deployed();
- console.log(verifier.address);
+ console.log('Verifier deployed at',verifier.address);
+
+ const ASP = await ethers.getContractFactory("ASP");
+ const asp = await ASP.deploy(verifier.address);
+ await asp.deployed();
+ console.log('ASP deployed at',asp.address);
 
 
   // deploy tornado
   const Tornado = await ethers.getContractFactory("Tornado");
-  const tornado = await Tornado.deploy(hasher.address, verifier.address);
+  const tornado = await Tornado.deploy(hasher.address, verifier.address, asp.address);
   await tornado.deployed();
+  console.log('Tornado deployed at',tornado.address);
 
-  console.log(tornado.address);
+  const tx = await asp.updateMixer(tornado.address);
+  await tx.wait();
+  console.log("Configuration done");
 }
 
 // We recommend this pattern to be able to use async/await everywhere

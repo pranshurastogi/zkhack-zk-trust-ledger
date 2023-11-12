@@ -3,7 +3,7 @@ import Script from "next/script";
 const Index = () => {
 return(
     <div>
-        <h1> Index</h1>
+        <h1> Crypto Mixer Practical Equilibrium</h1>
         <Script src="/js/snarkjs.min.js" />
         <Interface />
     </div>

@@ -8,9 +8,15 @@ interface IVerifier {
     function verifyProof(uint[2] memory a, uint[2][2] memory b, uint[2] memory c, uint[5] memory input) external;
 }
 
+interface IASP {
+    function markedPaid(uint256 _root) external  ;
+}
+
 contract Tornado is ReentrancyGuard {
     address verifier;
     Hasher hasher;
+    IASP asp;
+
 
     uint8 public treeLevel = 10;
     uint256 public denomination = 0.01 ether;
@@ -39,10 +45,12 @@ contract Tornado is ReentrancyGuard {
 
     constructor(
         address _hasher,
-        address _verifier
+        address _verifier,
+        address _asp
     ){
         hasher = Hasher(_hasher);
         verifier = _verifier;
+        asp = IASP(_asp);
     }
 
     function deposit(uint256 _commitment) external payable nonReentrant {
@@ -119,6 +127,7 @@ contract Tornado is ReentrancyGuard {
         (bool ok, ) = target.call{ value: denomination }("");
 
         require(ok, "payment-failed");
+        asp.markedPaid(associationHash);
 
         emit Withdrawal(msg.sender, _nullifierHash);
     }

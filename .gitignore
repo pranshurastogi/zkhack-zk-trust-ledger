@@ -1,5 +1,7 @@
 # Dependency directory
 node_modules/
+# Ignore node_modules in any directory
+**/node_modules/
 
 # Circom build artifacts
 build/
