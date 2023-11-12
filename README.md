@@ -1,6 +1,6 @@
-## Crypto Mixer with Regulatory Compliance
+## zk-trust-ledgerwith Regulatory Compliance
 
-zkCryptoMixer, a tool designed to enhance privacy for cryptocurrency transactions. By using Zero-Knowledge Proofs (zk-SNARKs) along with technologies like Circom, Solidity, and Next.js
+zk-trust-ledger, a tool designed to enhance privacy for cryptocurrency transactions. By using Zero-Knowledge Proofs (zk-SNARKs) along with technologies like Circom, Solidity, and Next.js
 
 ## Commands wrt circuit
 ### Other commands with respect to this circuit
