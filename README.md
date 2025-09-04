@@ -19,7 +19,6 @@ zk-trust-ledger, a tool designed to enhance privacy for cryptocurrency transacti
 
 
 
-
 ## Commands wrt circuit
 ### Other commands with respect to this circuit
 
